@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="product-detail-container">
+    <!-- Карусель изображений -->
+    <div class="product-carousel">
+        <div class="carousel">
+        <button class="carousel-prev">&#8249;</button>
+            {% for image in product.images.all %}
+                <img src="{{ image.image.url }}" class="carousel-image {% if forloop.first %}active{% endif %}" alt="{{ product.name }}">
+            {% endfor %}
+        <button class="carousel-next">&#8250;</button>
+        </div>
+        <div class="thumbnail-container">
+            {% for image in product.images.all %}
+                <img src="{{ image.image.url }}" class="thumbnail" data-index="{{ forloop.counter0 }}" alt="{{ product.name }}">
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Информация о продукте -->
+    <!-- Правая часть: Информация о товаре -->
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p class="price">{{ product.price }} ₽</p>
+        <p class="product-type">Тип: {{ product.category.name }}</p>
+        <p class="brand">Бренд: {{ product.brand.name }}</p>
+
+        <div class="size-selector">
+            <select>
+                {% for size in product.sizes.all %}
+                    <option>{{ size }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="add-to-cart" id="add-to-cart-listener" data-product-id="{{ product.id }}">В корзину</button>
+
+        <div class="extra-buttons">
+            <button class="size-guide">Как выбрать размер?</button>
+            <button class="size-chart">Таблица размеров</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let images = document.querySelectorAll(".carousel-image");
+        let thumbnails = document.querySelectorAll(".thumbnail");
+        let prevBtn = document.querySelector(".carousel-prev");
+        let nextBtn = document.querySelector(".carousel-next");
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            images.forEach(img => img.classList.remove("active"));
+            thumbnails.forEach(thumb => thumb.classList.remove("active"));
+            images[index].classList.add("active");
+            thumbnails[index].classList.add("active");
+        }
+
+        prevBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel(currentIndex);
+        });
+
+        nextBtn.addEventListener("click", function () {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel(currentIndex);
+        });
+
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener("click", function () {
+                currentIndex = index;
+                updateCarousel(currentIndex);
+            });
+        });
+    });
+</script>
+{% endblock %}

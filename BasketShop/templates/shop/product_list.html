@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Banner -->
+    <div id="banner-wrapper">
+        <div id="banner" class="box container">
+            <div class="row">
+                <div class="col-7 col-12-medium">
+                    <h2>Hi. This is BSKTSHOP.</h2>
+                    <p>This is a cool online store of original basketball items</p>
+                </div>
+                <div class="col-5 col-12-medium">
+                    <ul>
+                        <li><a href="#" class="button large icon solid fa-arrow-circle-right">Ok let's go</a></li>
+                        <li><a href="#" class="button alt large icon solid fa-question-circle">More info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Brands -->
+    <div id="categories-wrapper" class="box container">
+            <ul class="categories">
+                {% for brand in brands %}
+                    <li><a href="{{ brand.get_absolute_url }}" class="button alt small">{{ brand.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    <!-- Features -->
+    <div id="features-wrapper">
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-3 col-6-medium">
+                        <!-- Product -->
+                        <section class="box feature" id="">
+                            <a href="{{ product.get_absolute_url }}" class="image featured">
+                                <img src="{% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                            </a>
+                            <div class="inner">
+                                <header>
+                                    <h2>{{ product.name }}</h2>
+                                    <p>{{ product.price }}</p>
+                                </header>
+                            </div>
+                        </section>
+                    </div>
+                {% empty %}
+                    <p>Товаров пока нет.</p>  <!-- Если список пустой -->
+                {% endfor %}
+            </div>
+        </div>
+        {% include "shop/pagination.html" with page=products %}
+    </div>
+
+{% endblock %}

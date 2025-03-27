@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+{% load static %}
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>BSKTShop</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body class="is-preload homepage">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+        <header id="header" class="container">
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="{% url "shop:product_list" %}">BsktShop</a></h1>
+                <span>Воронеж</span>
+            </div>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="{% url "shop:product_list" %}">Главная</a></li>
+                    <li>
+                        <a href="#">Товары</a>
+                        <ul>
+                            {% for category in categories %}
+                                <li>
+                                    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                                    <ul>
+                                        {% for brand in brands %}
+                                            <li>
+                                                <a href="{% url "shop:product_list_by_category_and_brand" brand_slug=brand.slug category_slug=category.slug %}">{{ brand.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                    <li><a href="javascript:void(0);" id="cart-link">Корзина {{ cart|length }}</a></li>
+                    {% include 'cart/cart.html' %}
+                </ul>
+            </nav>
+        </header>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        <footer id="footer" class="box container">
+            <div class="row">
+                <div class="col-3 col-6-medium col-12-small">
+
+                    <!-- Links -->
+                    <section class="widget links">
+                        <h3>Random Stuff</h3>
+                        <ul class="style2">
+                            <li><a href="#">Etiam feugiat condimentum</a></li>
+                            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                            <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                            <li><a href="#">Felis varius pellentesque potenti</a></li>
+                            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                        </ul>
+                    </section>
+
+                </div>
+                <div class="col-3 col-6-medium col-12-small">
+
+                    <!-- Links -->
+                    <section class="widget links">
+                        <h3>Random Stuff</h3>
+                        <ul class="style2">
+                            <li><a href="#">Etiam feugiat condimentum</a></li>
+                            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                            <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                            <li><a href="#">Felis varius pellentesque potenti</a></li>
+                            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                        </ul>
+                    </section>
+
+                </div>
+                <div class="col-3 col-6-medium col-12-small">
+
+                    <!-- Links -->
+                    <section class="widget links">
+                        <h3>Random Stuff</h3>
+                        <ul class="style2">
+                            <li><a href="#">Etiam feugiat condimentum</a></li>
+                            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
+                            <li><a href="#">Sed porttitor cras in erat nec</a></li>
+                            <li><a href="#">Felis varius pellentesque potenti</a></li>
+                            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                        </ul>
+                    </section>
+
+                </div>
+                <div class="col-3 col-6-medium col-12-small">
+
+                    <!-- Contact -->
+                    <section class="widget contact last">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a>
+                            </li>
+                            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a>
+                            </li>
+                            <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                            <li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a>
+                            </li>
+                        </ul>
+                        <p>1234 Fictional Road<br/>
+                            Nashville, TN 00000<br/>
+                            (800) 555-0000</p>
+                    </section>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="copyright">
+                        <ul class="menu">
+                            <li>&copy; Untitled. All rights reserved</li>
+                            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'js/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/util.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+
+</body>
+</html>
