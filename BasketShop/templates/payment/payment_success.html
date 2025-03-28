@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-order txt-aligne">
+        <h2>Оплата прошла успешно</h2>
+        <h3>Мы уже собираем Ваш заказ</h3>
+
+        <a href="{% url 'shop:product_list' %}">
+            <button type="submit" class="btn btn-create-order">Вернуться в магазин</button>
+        </a>
+    </div>
+
+{% endblock %}

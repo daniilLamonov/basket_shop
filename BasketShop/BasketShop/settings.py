@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'django.contrib.postgres',
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
+    'phonenumber_field',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +132,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CART_SESSION_ID = 'cart'
+
+
+
+# Payment
+
+YOOKASSA_SHOP_ID = '1060277'
+YOOKASSA_SECRET_KEY = 'test_YCu7OjLgDa04ngzMr4KIKXFPk3QAElC3ZAj5TthvP04'

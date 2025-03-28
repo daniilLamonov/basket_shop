@@ -20,12 +20,11 @@ def add_to_cart(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.add(product)
-    # print(product)
-    return JsonResponse({'message': "Product has been added to cart"})
+    return JsonResponse({'cartCount': str(len(cart))})
 
 @require_POST
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
-    return JsonResponse({'success': True})
+    return JsonResponse({'success': True, 'cartCount': str(len(cart))})

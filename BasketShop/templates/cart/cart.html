@@ -8,6 +8,8 @@
         <div id="cart-items"></div>
 
         <!-- Кнопка "Заказать" -->
-        <button id="order-cart">Заказать</button>
+        <a href="{% url 'orders:create_order' %}" class="btn-link">
+            <button class="btn btn-create-order">Заказать</button>
+        </a>
     </div>
 </div>

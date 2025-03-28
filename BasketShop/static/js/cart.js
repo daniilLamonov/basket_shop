@@ -3,9 +3,9 @@ document.getElementById('cart-link').addEventListener('click', function() {
         .then(response => response.json())  // Преобразуем ответ в JSON
         .then(data => {
             let cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';  // Очищаем старые данные
+            cartItemsContainer.innerHTML = '';
 
-            if (data.cart.length > 0) {  // Проверяем, что корзина не пуста
+            if (data.cart.length > 0) {
                 data.cart.forEach(item => {
                     let itemDiv = document.createElement('div');
                     itemDiv.classList.add('cart-item');
@@ -52,6 +52,7 @@ function removeItemFromCart(productId){
     }).then(response => response.json())
     .then(data => {
         if (data.success) {
+            changeCount(data.cartCount)
             // Обновляем корзину после удаления товара
             document.getElementById('cart-link').click();  // Перезагружаем корзину
         } else {
@@ -64,8 +65,9 @@ function removeItemFromCart(productId){
 
 document.getElementById('add-to-cart-listener').addEventListener('click', function () {
     const productId = this.getAttribute("data-product-id");
-    addToCart(productId);
+    addToCart(productId)
 });
+
 function addToCart(productId){
     fetch(`/cart/add_to_cart/${productId}/`, {
         method: 'POST',
@@ -75,11 +77,22 @@ function addToCart(productId){
             },
         // body: `product_id=${productId}`
     }).then(response => response.json())
-    // .then(data => alert(data.message))
+    .then(data => {// Проверяем, что приходит
+        changeCount(data.cartCount);
+        document.getElementById('cart-link').click();  // Перезагружаем корзину
+    })
     .catch(error => console.error('Ошибка добавления в корзину:', error));
 }
 // Функция для получения CSRF-токена из cookies
 function getCSRFToken() {
     let csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
     return csrfToken ? csrfToken.split('=')[1] : '';
+}
+function changeCount(count) {
+    var countItems = document.getElementById('cart-link');
+    if (count === '0') {
+        countItems.innerHTML = 'Корзина'
+    } else {
+        countItems.innerHTML = `Корзина ${count}`;
+    }
 }

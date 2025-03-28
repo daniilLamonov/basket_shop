@@ -41,3 +41,5 @@ def pagination(items, request, items_per_page=12):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)
     return items
+def delivery_description(request):
+    return render(request, 'shop/delivery_description.html')

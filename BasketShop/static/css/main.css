@@ -1968,8 +1968,8 @@ ul.menu li:first-child {
 }
 
 #logo h1 {
-    background: #ff7400;
-    color: #451c00;
+    background: #9f1d15;
+    color: #ffd5ba;
     border-radius: 6px;
     font-family: 'Oleo Script', serif;
     font-weight: 400;
@@ -2687,27 +2687,34 @@ ul.menu li:first-child {
     }
 
 }
+.link-to-prod{
+    color: inherit; /* Наследует цвет от родителя */
+    text-decoration: none; /* Убирает подчеркивание */
+}
+.link-to-prod:hover{
+    color: inherit; /* Оставляет цвет таким же при наведении */
+}
+
 
 #categories-wrapper {
-    background: #f7f7f7;
-    padding: 20px 15px; /* Добавим паддинг сверху и снизу */
+    background-color: transparent;
+    border-radius: 0;
+    padding: 20px 5px; /* Добавим паддинг сверху и снизу */
     margin-top: 20px;
     border-top: 2px solid #ccc;
     border-bottom: 2px solid #ccc; /* Разграничивающая линия */
     display: flex;
     justify-content: center;
-    align-items: center; /* Центрирует контент по вертикали */
-    height: auto; /* Сама высота блока будет зависеть от контента */
+
 }
 
 .categories {
+    align-items: center;
     display: flex;
     justify-content: center;
-    gap: 20px;
     list-style: none;
     padding: 0;
-    align-items: center; /* Центрирует элементы по вертикали внутри списка */
-    height: 100%; /* Занимает всю доступную высоту */
+    margin: 0;
 }
 
 
@@ -2799,7 +2806,7 @@ ul.menu li:first-child {
 }
 
 .add-to-cart {
-    background: #a00;
+    background: #9f1d15;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -3095,4 +3102,39 @@ ul.menu li:first-child {
 
 .remove-btn i {
     font-size: 1.5em; /* Размер иконки */
+}
+
+.container-order {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.txt-aligne{
+    text-align: center;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-create-order {
+    background: #9f1d15;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-create-order:hover {
+    background: #0056b3;
 }

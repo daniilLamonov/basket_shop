@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-order">
+        <h2>Оформление заказа</h2>
+        <h3>Ваш заказ</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }} x {{ item.product.name }}
+                    <span>{{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="post" class="order-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-create-order">Оформить заказ</button>
+        </form>
+
+    </div>
+
+{% endblock %}

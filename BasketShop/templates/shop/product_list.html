@@ -21,12 +21,12 @@
     </div>
     <!-- Brands -->
     <div id="categories-wrapper" class="box container">
-            <ul class="categories">
-                {% for brand in brands %}
-                    <li><a href="{{ brand.get_absolute_url }}" class="button alt small">{{ brand.name }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+        <ul class="categories">
+            {% for brand in brands %}
+                <li><a href="{{ brand.get_absolute_url }}" class="button alt small">{{ brand.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
     <!-- Features -->
     <div id="features-wrapper">
         <div class="container">
@@ -36,13 +36,16 @@
                         <!-- Product -->
                         <section class="box feature" id="">
                             <a href="{{ product.get_absolute_url }}" class="image featured">
-                                <img src="{% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                                <img src="
+                                        {% if product.images.first %}{{ product.images.first.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
                             </a>
                             <div class="inner">
+                                <a href="{{ product.get_absolute_url }}" class="link-to-prod">
                                 <header>
                                     <h2>{{ product.name }}</h2>
                                     <p>{{ product.price }}</p>
                                 </header>
+                                </a>
                             </div>
                         </section>
                     </div>
